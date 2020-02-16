@@ -6,5 +6,21 @@
         "img_url": "",
         "long": -92.330593,
         "lat": 38.946468
+    },
+    {
+        "name": "Catalyst Cafe",
+        "location_shorthand": "Life Sciences Building",
+        "desc": "",
+        "img_url": "",
+        "long": -92.323086,
+        "lat": 38.943050
+    },
+    {
+        "name": "Elis Library",
+        "location_shorthand": "Elis Library",
+        "desc": "",
+        "img_url": "",
+        "long":  -92.32639,
+        "lat": 38.94430
     }
 ]

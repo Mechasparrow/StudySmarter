@@ -1,5 +1,7 @@
 import React from "react";
 
+import LocationMapView from './LocationMapView';
+
 import {
     useParams
   } from "react-router-dom";
@@ -24,9 +26,14 @@ class ViewLocation extends React.Component {
 
         //TODO render map
 
+        const locationCoords =[this.state.locationData.lat, this.state.locationData.long];
+
         return (
             <div className = "container-fluid">
                 <h1>Viewing {this.state.locationData.location_shorthand}</h1>
+                <LocationMapView location = {locationCoords}></LocationMapView>
+            
+                <a href = "/#">Go Back</a>
             </div>
         );
     }
