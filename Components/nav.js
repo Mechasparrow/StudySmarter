@@ -12,7 +12,7 @@ class NavBar extends React.Component {
 
             <ul className = "navbar-nav ml-auto">
               <li className = "nav-item">
-                <a className ="nav-link" href = "#">Home</a>
+                <a className ="nav-link" href = "/">Home</a>
               </li>
             </ul>
           </div>

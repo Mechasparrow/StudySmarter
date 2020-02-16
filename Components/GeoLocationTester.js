@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
+//Leaflet React
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 
+//For additional leaflet functions
 const L = require('leaflet');
+
+//Data
+const data = require('../data/studylocations.json');
 
 
 class GeoLocationTester extends React.Component {
@@ -14,7 +18,8 @@ class GeoLocationTester extends React.Component {
 
     this.state = {
       "navigationSupported": navigationSupported,
-      "navData": [45.4, -75.7]
+      "navData": [45.4, -75.7],
+      "studyLocations": data
     }
 
     this.pullGeoData = this.pullGeoData.bind(this);
@@ -48,6 +53,12 @@ class GeoLocationTester extends React.Component {
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
 
+    let studyMarkers = this.state.studyLocations.map((location, idx) => {
+      return (
+        <Marker key = {idx} icon = {myIcon} position = {[location.lat, location.long]} />
+      )
+    })
+
     return (
       <div>
         <Map center={this.state.navData} zoom={19}>
@@ -55,8 +66,7 @@ class GeoLocationTester extends React.Component {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker icon = {myIcon} position={this.state.navData}
-            />
+          {studyMarkers}
         </Map>
       </div>
     );

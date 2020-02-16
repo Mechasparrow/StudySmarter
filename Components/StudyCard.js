@@ -16,7 +16,7 @@ class StudyCard extends React.Component {
         <div className = "card-body">
           <p className = "card-text">Located at {this.props.location}</p>
 
-          <a href = "#" className = "btn btn-primary">View Location</a>
+          <a href = {"/view-location/" + this.props.idx} className = "btn btn-primary">View Location</a>
         </div>
       </div>
     )

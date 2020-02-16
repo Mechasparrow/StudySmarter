@@ -1,47 +1,52 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import HelloMessage from './Components/hello.js';
 import NavBar from './Components/nav.js';
-import StudyCard from './Components/StudyCard.js';
-import GeoLocationTester from './Components/GeoLocationTester.js';
 
+//Navigation
+import Home from './Components/home.js';
+import ViewLocation from './Components/ViewLocation.js';
+
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      name: "Mecha"
-    }
+
+
   }
 
   render() {
 
-    let studyItems = [{
-      name: "Laferre",
-      location: "Plaza"
-    },
-  {
-    name: "Catalyst",
-    location: "Life Sciences"
-  }];
-    let studyCards = studyItems.map((item, idx) =>
-      <div key = {idx}>
-        <StudyCard name = {item.name} location = {item.location}/>
-        <br/>
-      </div>
-    );
-
     return (
-      <div>
-        <NavBar></NavBar>
-        <GeoLocationTester/>
-        <div className = "study-card-list container-fluid">
-            {studyCards}
+      <Router>
+        <div>
+          <NavBar/>
+
+          {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. */}
+          <Switch>
+            
+            
+            {/* View Location Page */}
+            <Route path = "/view-location/:locationId" component = {ViewLocation}/>
+            
+            {/*Home Page*/}
+            <Route path = "/">
+              <Home />
+            </Route>
+          </Switch>
         </div>
-      </div>
+      </Router>
     )
+
   }
 }
 
