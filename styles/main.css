@@ -1,0 +1,9 @@
+.study-card-list {
+  margin-top: 16px;
+}
+.leaflet-container {
+  margin-left:auto;
+  margin-right:auto;
+  width: 50%;
+  height: 400px;
+}
