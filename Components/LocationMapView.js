@@ -16,14 +16,23 @@ class LocationMapView extends React.Component {
   
   render() {
 
-    const myIcon = L.icon({
+    const bookIcon = L.icon({
         iconUrl: require('../res/book.svg'),
         iconSize:     [38, 95], // size of the icon
         iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
 
+    const defaultIcon = L.icon({
+      iconUrl: require('../res/location.svg'),
+      iconSize:     [38, 95], // size of the icon
+      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
     const coords = [this.props.location[0], this.props.location[1]];
+
+    const icon = (this.props.mode == "whereami" ? defaultIcon : bookIcon);
 
     return (
 
@@ -33,7 +42,7 @@ class LocationMapView extends React.Component {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-            <Marker icon = {myIcon} position = {coords} />
+            <Marker icon = {icon} position = {coords} />
         </Map>
       </div>
     );
