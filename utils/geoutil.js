@@ -20,8 +20,19 @@ function calculateDistance(loco1, loco2){  // generally used geo measurement fun
     return d * 1000; // meters
 }
 
+function pullUpDirections(loco) {
+
+    const lat = loco[0];
+    const lon = loco[1];
+
+    const mapUrl = "https://www.google.com/maps/dir/?api=1&destination=" + lat.toString() + "," + lon.toString();
+
+    window.open(mapUrl);
+}
+
 const GeoUtil = {
-    calculateDistance
+    calculateDistance,
+    pullUpDirections
 }
 
 export default GeoUtil;

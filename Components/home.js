@@ -41,7 +41,7 @@ class Home extends React.Component {
         
 
         const loco = this.state.coords;
-
+        const urlTest = "https://www.google.com/maps/dir/?api=1&parameters";
 
         const cards = data.map((item, idx) => {
             console.log(idx);

@@ -1,12 +1,15 @@
 import React from "react";
 
 import LocationMapView from './LocationMapView';
+import GeoUtil from '../utils/geoutil.js';
 
 import {
     useParams
   } from "react-router-dom";
 
 const locationData = require('../data/studylocations.json');
+
+
 
 class ViewLocation extends React.Component {
 
@@ -20,6 +23,14 @@ class ViewLocation extends React.Component {
         this.state = {
             locationData: locationData[locationId]
         } 
+    
+        this.viewDirections = this.viewDirections.bind(this);
+    }
+
+    viewDirections() {
+        let {lat, long} = this.state.locationData;
+        let coords = [lat, long];
+        GeoUtil.pullUpDirections(coords);
     }
 
     render() {
@@ -33,6 +44,8 @@ class ViewLocation extends React.Component {
                 <h1>Viewing {this.state.locationData.location_shorthand}</h1>
                 <LocationMapView location = {locationCoords}></LocationMapView>
             
+                <button onClick = {this.viewDirections} className = "btn btn-success">View Directions</button>
+                <br/>
                 <a href = "/#">Go Back</a>
             </div>
         );
