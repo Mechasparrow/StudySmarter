@@ -54,7 +54,7 @@ class Home extends React.Component {
             <div className = "container-fluid">
                 <h1>Welcome</h1>
 
-                <LocationMapView mode = "whereami" location = {loco}/>
+                <LocationMapView mode = "whereami" location = {loco} studyLocations = {data}/>
                 <br/>
                 {cards}
             </div>

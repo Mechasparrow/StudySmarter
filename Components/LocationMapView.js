@@ -10,10 +10,33 @@ class LocationMapView extends React.Component {
 
   constructor(props) {
     super(props);
-    
+
+    let otherCoords = [];
+  
+    if (this.props.studyLocations != undefined) {
+      otherCoords = this.props.studyLocations.map(function (studyLocation) {
+        return [studyLocation.lat, studyLocation.long];
+      })
+    }
+  
+    this.state = {
+      studyLocationsCoords: otherCoords
+    }
+
+    this.locoOpen = this.locoOpen.bind(this);
+
   }
 
   
+  locoOpen(e) {
+
+    let id = e.target.options.id;
+    console.log(id);
+
+    window.location = "/view-location/" + id.toString();
+
+  }
+
   render() {
 
     const bookIcon = L.icon({
@@ -34,6 +57,12 @@ class LocationMapView extends React.Component {
 
     const icon = (this.props.mode == "whereami" ? defaultIcon : bookIcon);
 
+    const studyMarkers = this.state.studyLocationsCoords.map(function (location, idx) {
+      return (
+        <Marker onClick = {this.locoOpen} icon = {bookIcon} key = {idx} id = {idx} position = {location} />
+      )
+    }.bind(this))
+
     return (
 
       <div>
@@ -42,7 +71,10 @@ class LocationMapView extends React.Component {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-            <Marker icon = {icon} position = {coords} />
+            <Marker icon = {icon} position = {coords}>
+              <Popup>You are here</Popup>
+            </Marker>
+            {studyMarkers}
         </Map>
       </div>
     );
